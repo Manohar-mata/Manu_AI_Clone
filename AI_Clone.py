@@ -68,8 +68,8 @@ def main():
     
     st.header("Manu AI clone")
 
-    avatar = Image.open('/content/drive/MyDrive/Manohar_Projects/Ai_clone/ManoharPhoto.png')
-    st.image(avatar, caption="Manu AI clone", width=100) 
+    #avatar = Image.open('/content/drive/MyDrive/Manohar_Projects/Ai_clone/ManoharPhoto.png')
+    #st.image(avatar, caption="Manu AI clone", width=100) 
 
     user_question = st.text_input("Ask a Question for Hari")
 
