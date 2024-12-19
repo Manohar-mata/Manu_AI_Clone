@@ -20,11 +20,15 @@ def read_csv():
     return data
 
 def get_vector_store(data):
-    vectorstore_faiss=FAISS.from_documents(
-        data,
-        embeddings
-    )
-    vectorstore_faiss.save_local('vector_store')
+    try:
+        vector_store = FAISS.load_local("vector_store", embeddings)
+    except ValueError as e:
+        st.error("Failed to load vector store. Regenerating...")
+        data = read_csv()
+        get_vector_store(data)
+        vector_store = FAISS.load_local("vector_store", embeddings)
+        st.success("Vector store regenerated successfully!")
+
 
 def llama2_model():
     llm=Bedrock(model_id="meta.llama2-70b-chat-v1",client=aws_bedrock,
